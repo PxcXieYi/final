@@ -32,24 +32,24 @@ public class BannerServiceImplTest {
         List<Banner> banners = bannerService.selectAllBanner();
         System.out.println(banners);
     }
-    @Test
+   /* @Test
     public void test2(){
-        Banner banner = new Banner(0,"王五","1",0,"2018-06-15","真好");
+        Banner banner = new Banner(0,"王五","1",0,"真好");
         bannerService.addBanner(banner);
 
-    }
+    }*/
     @Test
     public void test3(){
 
         bannerService.delete(9);
 
     }
-    @Test
+   /* @Test
     public void test4(){
         Banner banner = new Banner(14,"王五","1",0,"2018-10-12","测试");
         bannerService.updateBanner(banner);
 
-    }
+    }*/
 
 
 }

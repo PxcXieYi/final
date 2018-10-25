@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace 写当前mapper文件对应的dao接口的全类名 
+	因为这里配置的都是和EmpDao接口中定义的方法有关的语句 
+-->
+<mapper namespace="com.baizhi.dao.AlbumDao">
+	<resultMap id="albumResultMap" type="Album">
+		<result column="title1" property="title"></result>
+		<result column="id" property="id"></result>
+		<result column="brief1" property="brief"></result>
+		<collection property="children" ofType="Chapter">
+			<result column="id1" property="id"></result>
+			<result column="title" property="title"></result>
+			<result column="url" property="url"></result>
+			<result column="size" property="size"></result>
+			<result column="duration" property="duration"></result>
+		</collection>
+	</resultMap>
+	<!-- 查询-->
+	<select id="selectAllAlbum"  resultMap="albumResultMap">
+		select t1.id,t1.title title1,t1.brief brief1,
+		t2.id id1,t2.title,t2.url,t2.size,t2.duration from c_album t1 left join c_chapter t2
+		on t1.id=t2.album_id
+	</select>
+	<!--添加-->
+	<insert id="insertAlbum">
+		insert into c_album values(0,#{title},#{coverImg},#{count},#{score},#{author},#{broadCast},#{brief},SYSDATE())
+	</insert>
+	<!--查询一个-->
+	<select id="selectOneAlbum" resultType="int">
+		select id from c_album where title=#{title}
+	</select>
+
+
+
+</mapper>
