@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace 写当前mapper文件对应的dao接口的全类名 
+	因为这里配置的都是和EmpDao接口中定义的方法有关的语句 
+-->
+<mapper namespace="com.baizhi.dao.BannerDao">
+	<resultMap id="bannerResultMap" type="Banner">
+		<result column="id" property="id"></result>
+		<result column="name" property="name"></result>
+		<result column="url" property="url"></result>
+		<result column="status" property="status"></result>
+		<result column="createDate" property="createDate"></result>
+		<result column="description" property="descr"></result>
+	</resultMap>
+	<!-- 查询-->
+	<select id="selectAllBanner"  resultMap="bannerResultMap">
+		select * from c_banner
+	</select>
+	<!--添加-->
+	<insert id="addBanner">
+		insert into c_banner (name,url,status,createDate,description) values(
+		#{name},#{url},#{status},SYSDATE(),#{descr}
+		)
+	</insert>
+	<!--删除-->
+	<delete id="delete">
+		delete from c_banner where id=#{id}
+	</delete>
+	<!--修改-->
+	<update id="updateBanner">
+		update c_banner set status =#{status} where id=#{id}
+	</update>
+
+
+
+</mapper>

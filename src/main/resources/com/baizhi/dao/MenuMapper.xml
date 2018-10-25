@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace 写当前mapper文件对应的dao接口的全类名 
+	因为这里配置的都是和EmpDao接口中定义的方法有关的语句 
+-->
+<mapper namespace="com.baizhi.dao.MenuDao">
+	<resultMap id="menuResultMap" type="Menu">
+		<result column="id" property="id"></result>
+		<result column="title" property="title"></result>
+		<result column="parent_id" property="parentid"></result>
+		<result column="iconCls" property="iconCls"></result>
+		<result column="url" property="url"></result>
+		<collection property="menuList" ofType="Menu">
+			<result column="id1" property="id"></result>
+			<result column="title1" property="title"></result>
+			<result column="iconCls1" property="iconCls"></result>
+			<result column="parent1_id" property="parentid"></result>
+			<result column="url1" property="url"></result>
+		</collection>
+	</resultMap>
+	<!-- 查询-->
+	<select id="selectAll"  resultMap="menuResultMap">
+		select t1.*,t2.id id1,t2.title title1,t2.iconCls iconCls1,t2.url url1,t2.parent_id parent1_id from c_menu t1 left join c_menu  t2
+		on t1.id=t2.parent_id
+		where t1.parent_id is null
+	</select>
+
+
+
+</mapper>

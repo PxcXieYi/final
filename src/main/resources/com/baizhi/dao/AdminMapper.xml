@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace 写当前mapper文件对应的dao接口的全类名 
+	因为这里配置的都是和EmpDao接口中定义的方法有关的语句 
+-->
+<mapper namespace="com.baizhi.dao.AdminDao">
+	<!-- 查询-->
+	<select id="queryAll"  resultType="Admin">
+		select * from c_admin
+	</select>
+	<select id="query"  resultType="Admin">
+		select * from c_admin where name=#{name} and password=#{password}
+	</select>
+
+
+</mapper>
